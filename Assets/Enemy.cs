@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
         Vector3 direction = target.position - getCurrentPos();
         transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
 
-        if (Vector3.Distance(getCurrentPos(), target.position) <= 0.4f)
+        if (Vector3.Distance(getCurrentPos(), target.position) <= 0.4f) 
         {
             GetNextWayPoint();
         }
