@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,12 +7,19 @@ public class Turret : MonoBehaviour
 {
 
     private Transform target;
+
+    [Header("Attributes")]
     public float range = 15f;
-
-    public string enemyTag = "Enemy";
-
-    public Transform partToRotate;
+    public float fireRate = 1f;
+    private float fireCountdown = 0f;
     public float turnSpeed = 10f;
+
+
+    [Header("Unity Setup Fields")]
+    public string enemyTag = "Enemy";
+    public Transform partToRotate;
+    
+
 
     // Start is called before the first frame update
     void Start()
@@ -48,12 +56,29 @@ public class Turret : MonoBehaviour
         if (target == null)
             return;
 
+        lockTarget();
+
+        if(fireCountdown <= 0f)
+        {
+            Shoot();
+            fireCountdown = 1f / fireRate;
+        }
+
+        fireCountdown -= Time.deltaTime; 
+    }
+
+    void Shoot()
+    {
+        Debug.Log("Shoot!");
+    }
+
+    private void lockTarget()
+    {
         //Target lock on
         Vector3 direction = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
         partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-
     }
 
     private void OnDrawGizmosSelected()
