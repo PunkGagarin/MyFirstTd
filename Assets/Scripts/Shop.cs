@@ -12,13 +12,13 @@ public class Shop : MonoBehaviour
 
     public void PurchaseStandardTurret()
     {
-        Debug.Log("Standard Turret Purchased");
+        Debug.Log("Standard Turret Selected");
         buildManager.SetTurretToBuild(buildManager.standartTurretPrefab);
     }
 
-    public void PurchaseAnotherTurret()
+    public void PurchaseMissileLauncer()
     {
-        Debug.Log("Another Turret Purchased");
-        buildManager.SetTurretToBuild(buildManager.anotherTurretPrefab);
+        Debug.Log("Missile Launher Selected");
+        buildManager.SetTurretToBuild(buildManager.missileLauncerPrefab);
     }
 }

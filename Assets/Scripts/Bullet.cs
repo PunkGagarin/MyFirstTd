@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class Bullet : MonoBehaviour
     private Transform target;
 
     public float speed = 70f;
+    public float exposionRadius = 0f;
     public GameObject impactEffect;
 
     public void Seek(Transform _target)
@@ -32,15 +34,39 @@ public class Bullet : MonoBehaviour
         }
 
         transform.Translate(direction.normalized * distanceThisFrame, Space.World);
+        transform.LookAt(target);
 
     }
 
     private void HitTarget()
     {
         GameObject effectInstance = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
-        Destroy(effectInstance, 0.2f);
+        Destroy(effectInstance, 5f);
 
-        Destroy(target.gameObject);
+        if(exposionRadius > 0) {
+            Explode();
+        } else {
+            Damage(target);
+        }
+
         Destroy(gameObject);
+    }
+
+    private void Explode() {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, exposionRadius);
+        foreach (Collider collider in colliders) {
+            if(collider.tag == "Enemy") {
+                Damage(collider.transform);
+            }
+        }
+    }
+
+    private void Damage(Transform enemy) {
+        Destroy(enemy.gameObject);
+    }
+
+    private void OnDrawGizmosSelected() {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, exposionRadius);
     }
 }
