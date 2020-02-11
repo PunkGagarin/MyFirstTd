@@ -1,57 +1,59 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Node : MonoBehaviour
-{
+public class Node : MonoBehaviour {
     BuildManager buildManager;
     public Color hoverColor;
+    public Color notEnoughMoneyColor;
     public Vector3 positionOffset;
 
-    private GameObject currentTurret;
+    [Header("Optional")]
+    public GameObject turret;
 
     private Renderer rend;
     private Color startColor;
+    
 
-    void Start()
-    {
+    void Start() {
         rend = GetComponent<Renderer>();
         startColor = rend.material.color;
 
         buildManager = BuildManager.instance;
     }
 
-    private void OnMouseDown()
-    {
+    private void OnMouseDown() {
         if (EventSystem.current.IsPointerOverGameObject())
             return;
 
-        if (buildManager.GetTurretToBuild() == null)
+        if (!buildManager.CanBuild)
             return;
 
-        if(currentTurret != null)
-        {
+        if (turret != null) {
             Debug.Log("Can't build here! - TODO: Display on screen");
             return;
         }
 
-        //Build a turret
-        GameObject turretToBuild = buildManager.GetTurretToBuild();
-        currentTurret = (GameObject)Instantiate(turretToBuild, transform.position + positionOffset, transform.rotation);
+        buildManager.BuildTurretOn(this);
     }
-    void OnMouseEnter()
-    {
+    void OnMouseEnter() {
         if (EventSystem.current.IsPointerOverGameObject())
             return;
 
         //TODO: проверить
-        if (buildManager.GetTurretToBuild() == null)
+        if (!buildManager.CanBuild)
             return;
 
-        rend.material.color = hoverColor;
+        if (buildManager.HasMoney)
+            rend.material.color = hoverColor;
+        else
+            rend.material.color = notEnoughMoneyColor;
     }
 
-    private void OnMouseExit()
-    {
+    private void OnMouseExit() {
         rend.material.color = startColor;
+    }
+
+    public Vector3 GetBuildPosition() {
+        return transform.position + positionOffset;
     }
 }
