@@ -9,6 +9,8 @@ public class BuildManager : MonoBehaviour {
     public GameObject standartTurretPrefab;
     public GameObject missileLauncerPrefab;
 
+
+    public GameObject buildEffect;
     private void Awake() {
         if (instance != null) {
             Debug.LogError("More than one BuildManager in scene");
@@ -29,6 +31,9 @@ public class BuildManager : MonoBehaviour {
         PlayerStats.Money -= turretToBuild.cost;
         GameObject turret = (GameObject)Instantiate(turretToBuild.turretPrefab, node.GetBuildPosition(), Quaternion.identity);
         node.turret = turret;
+
+        GameObject effect = (GameObject)Instantiate(buildEffect, node.GetBuildPosition(), Quaternion.identity);
+        Destroy(effect, 5f);
 
         Debug.Log("Turret build! Money left: " + PlayerStats.Money);
     }
