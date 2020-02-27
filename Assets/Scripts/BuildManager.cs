@@ -6,10 +6,7 @@ public class BuildManager : MonoBehaviour {
 
     private TurretBluePrint turretToBuild;
 
-    public GameObject standartTurretPrefab;
-    public GameObject missileLauncerPrefab;
-
-
+ 
     public GameObject buildEffect;
     private void Awake() {
         if (instance != null) {
