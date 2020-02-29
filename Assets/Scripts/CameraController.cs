@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
-public class CameraController : MonoBehaviour
-{
+public class CameraController : MonoBehaviour {
 
     public bool doMovement = true;
 
@@ -13,8 +12,11 @@ public class CameraController : MonoBehaviour
     public float maxY = 80f;
 
 
-    private void Update()
-    {
+    private void Update() {
+        if (GameManager.IsGameOver) {
+            enabled = false;
+            return;
+        }
 
         if (Input.GetKeyDown(KeyCode.Escape))
             doMovement = !doMovement;
@@ -22,20 +24,16 @@ public class CameraController : MonoBehaviour
         if (!doMovement)
             return;
 
-        if (Input.GetKey("w") || Input.mousePosition.y >= Screen.height - panBorderThickness) 
-        {
+        if (Input.GetKey("w") || Input.mousePosition.y >= Screen.height - panBorderThickness) {
             transform.Translate(Vector3.forward * panSpeed * Time.deltaTime, Space.World);
         }
-        if (Input.GetKey("s") || Input.mousePosition.y <= panBorderThickness)
-        {
+        if (Input.GetKey("s") || Input.mousePosition.y <= panBorderThickness) {
             transform.Translate(Vector3.back * panSpeed * Time.deltaTime, Space.World);
         }
-        if (Input.GetKey("a") || Input.mousePosition.x <= panBorderThickness)
-        {
+        if (Input.GetKey("a") || Input.mousePosition.x <= panBorderThickness) {
             transform.Translate(Vector3.left * panSpeed * Time.deltaTime, Space.World);
         }
-        if (Input.GetKey("d") || Input.mousePosition.x >= Screen.width - panBorderThickness)
-        {
+        if (Input.GetKey("d") || Input.mousePosition.x >= Screen.width - panBorderThickness) {
             transform.Translate(Vector3.right * panSpeed * Time.deltaTime, Space.World);
         }
 

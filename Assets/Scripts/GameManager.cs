@@ -1,25 +1,34 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-    public bool gameEnded = false;
+    [HideInInspector]
+    public static bool IsGameOver;
+    public GameObject gameOverUI;
+
+
+    private void Start() {
+        IsGameOver = false;
+    }
     void Update() {
 
-        if (gameEnded)
+        if (IsGameOver)
             return;
 
-        if (PlayerStats.Lives <= 0 
+        if (Input.GetKeyDown("e"))
+            EndGame();
+
+        if (PlayerStats.Lives <= 0
             //&& !gameEnded
             ) {
-            GameOver();
-            gameEnded = true;
+            EndGame();
         }
     }
 
-    private void GameOver() {
-        Debug.Log("Game over");
+    private void EndGame() {
+        IsGameOver = true;
+        IsGameOver = true;
+
+        gameOverUI.SetActive(true);
     }
 }

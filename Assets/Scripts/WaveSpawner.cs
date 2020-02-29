@@ -2,8 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class WaveSpawner : MonoBehaviour
-{
+public class WaveSpawner : MonoBehaviour {
     public Transform enemyPrefab;
 
     public Transform spawnPoint;
@@ -13,12 +12,10 @@ public class WaveSpawner : MonoBehaviour
 
     public Text waveCountdownText;
 
-    private int waveIndex = 0; 
+    private int waveIndex = 0;
 
-    private void Update()
-    {
-        if(countdown <= 0f)
-        {
+    private void Update() {
+        if (countdown <= 0f) {
             StartCoroutine(SpawnWave());
             countdown = timeBetweenWaves;
         }
@@ -28,19 +25,17 @@ public class WaveSpawner : MonoBehaviour
         waveCountdownText.text = string.Format("{0:00.00}", countdown);
     }
 
-     IEnumerator SpawnWave()
-    {
+    IEnumerator SpawnWave() {
         waveIndex++;
+        PlayerStats.Rounds++;
 
-        for (int i = 0; i < waveIndex; i++)
-        {
+        for (int i = 0; i < waveIndex; i++) {
             SpawnEnemy();
             yield return new WaitForSeconds(0.5f);
         }
     }
 
-     void SpawnEnemy()
-    {
+    void SpawnEnemy() {
         Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
     }
 }
