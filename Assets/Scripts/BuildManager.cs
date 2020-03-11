@@ -10,6 +10,8 @@ public class BuildManager : MonoBehaviour {
     public NodeUI nodeUI;
 
     public GameObject buildEffect;
+    public GameObject sellEffect;
+
     private void Awake() {
         if (instance != null) {
             Debug.LogError("More than one BuildManager in scene");
