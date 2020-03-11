@@ -13,6 +13,9 @@ public class PauseMenu : MonoBehaviour {
     }
 
     public void TogglePause() {
+        if (GameManager.IsGameOver)
+            return;
+
         pauseUI.SetActive(!pauseUI.activeSelf);
 
         if (pauseUI.activeSelf) {
@@ -28,6 +31,6 @@ public class PauseMenu : MonoBehaviour {
     }
 
     public void Menu() {
-        Debug.Log("Go to Menu");    
+        Debug.Log("Go to Menu");
     }
 }
