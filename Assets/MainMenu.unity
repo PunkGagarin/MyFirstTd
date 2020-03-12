@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fader: {fileID: 882897552}
-  levelToLoad: MainLevel
+  levelToLoad: LevelSelect
 --- !u!4 &34547333
 Transform:
   m_ObjectHideFlags: 0
