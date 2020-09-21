@@ -22,20 +22,18 @@ public class MainMenu : MonoBehaviour {
     }
 
     #region Difficulty select
-
     public void setEasy() {
-        GameStats.difficulty = GameStats.Difficulty.Easy;
+        GameStats.setDifficulty(GameStats.Difficulty.Easy);
     }
 
 
     public void setNormal() {
-        GameStats.difficulty = GameStats.Difficulty.Normal;
+        GameStats.setDifficulty(GameStats.Difficulty.Normal);
     }
 
 
     public void setHard() {
-        GameStats.difficulty = GameStats.Difficulty.Hard;
+        GameStats.setDifficulty(GameStats.Difficulty.Hard);
     }
-
     #endregion
 }
