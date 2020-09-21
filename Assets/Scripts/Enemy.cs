@@ -16,6 +16,11 @@ public class Enemy : MonoBehaviour {
     [Header("Unity Components")]
     public Image healthBar;
 
+    public EnemyType type;
+    [HideInInspector]
+    public int minCount;
+    public int constructValue;
+
     private Vector3 getCurrentPos() {
         return transform.position;
     }
