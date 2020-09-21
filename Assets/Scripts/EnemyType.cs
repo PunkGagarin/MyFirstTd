@@ -1,5 +1,6 @@
 ﻿public enum EnemyType {
     Simple,
     Fast,
-    Tough
+    Tough,
+    Mass
 }
