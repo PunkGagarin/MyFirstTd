@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour {
     public int buffType = 1;
     public float buffRadius = 10f;
     public float healAmount = 50f;
-    public GameObject impactEffect;
+    public GameObject auraEffect;
 
     [Header("Unity Components")]
     public Image healthBar;
@@ -37,8 +37,11 @@ public class Enemy : MonoBehaviour {
     private void Start() {
         speed = startSpeed;
         health = startHealth;
-        if (isBuffer)
+        if (isBuffer) {
+            GameObject effectInstance = (GameObject)Instantiate(auraEffect, transform.position, transform.rotation);
+            Destroy(effectInstance, 5f);
             StartCoroutine(Buff(buffType));
+        }
     }
 
     public void DoBufferStuff() {
@@ -55,8 +58,6 @@ public class Enemy : MonoBehaviour {
     }
 
     private void BuffAction(int buffType) {
-        GameObject effectInstance = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
-        Destroy(effectInstance, 5f);
         Collider[] colliders = Physics.OverlapSphere(transform.position, buffRadius);
         foreach (Collider collider in colliders) {
             if (collider.tag == "Enemy") {
