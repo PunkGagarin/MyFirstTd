@@ -5474,9 +5474,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 456607465}
   waves:
-  - enemy: {fileID: 2826574622878968743, guid: 25419942f561c7741b60c20934e7282e, type: 3}
-    count: 2
-    rate: 2
+  - enemy: {fileID: 2826574622878968743, guid: cb7c8b509aa6ed745927b0582e904fb1, type: 3}
+    count: 3
+    rate: 1
     value: 30
   - enemy: {fileID: 2826574622878968743, guid: 25419942f561c7741b60c20934e7282e, type: 3}
     count: 5
@@ -6351,7 +6351,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 65, y: 0, z: 0}
 --- !u!114 &534669906
 MonoBehaviour:
@@ -24834,7 +24834,7 @@ PrefabInstance:
     - target: {fileID: 7456331920817879972, guid: a3e25da144e769b4b8ba15ba3bcfcfb6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7456331920817879972, guid: a3e25da144e769b4b8ba15ba3bcfcfb6,
         type: 3}
