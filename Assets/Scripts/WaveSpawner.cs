@@ -7,13 +7,12 @@ using System.Linq;
 using System.Text;
 
 public class WaveSpawner : MonoBehaviour {
-
+    [HideInInspector]
     public static int EnemiesAlive;
 
     public GameManager gameManager;
 
     public Wave[] waves;
-    public GameObject[] enemies;
 
     public Transform spawnPoint;
 
@@ -55,11 +54,16 @@ public class WaveSpawner : MonoBehaviour {
 
         Wave wave = waves[waveIndex];
 
-        EnemiesAlive = wave.count;
+        EnemiesAlive = wave.getEnemiesCount();
 
-        for (int i = 0; i < wave.count; i++) {
-            SpawnEnemy(wave.enemy);
-            yield return new WaitForSeconds(1 / wave.rate);
+        for (int i = 0; i < wave.enemiesDict.Length; i++) {
+            Wave.EnemiesDict currentEnemy = wave.enemiesDict[i];
+            for (int j = 0; j < currentEnemy.count; j++) {
+                SpawnEnemy(currentEnemy.enemy);
+                float timeBetweenEnemies = j == currentEnemy.count - 1 ?
+                    currentEnemy.timeBeforeNextEnemy != 0 ? currentEnemy.timeBeforeNextEnemy : 1 : currentEnemy.rate;
+                yield return new WaitForSeconds(1 / timeBetweenEnemies );
+            }
         }
         waveIndex++;
     }

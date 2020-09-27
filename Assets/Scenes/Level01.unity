@@ -5474,46 +5474,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 456607465}
   waves:
-  - enemy: {fileID: 2826574622878968743, guid: cb7c8b509aa6ed745927b0582e904fb1, type: 3}
-    count: 3
-    rate: 1
-    value: 30
-  - enemy: {fileID: 2826574622878968743, guid: 25419942f561c7741b60c20934e7282e, type: 3}
-    count: 5
-    rate: 2
-    value: 40
-  - enemy: {fileID: 2826574622878968743, guid: 25419942f561c7741b60c20934e7282e, type: 3}
-    count: 10
-    rate: 2
-    value: 50
-  - enemy: {fileID: 2826574622878968743, guid: caf75b7ba60aec044a459ad39f7182db, type: 3}
-    count: 3
-    rate: 1
-    value: 60
-  - enemy: {fileID: 2826574622878968743, guid: caf75b7ba60aec044a459ad39f7182db, type: 3}
-    count: 5
-    rate: 1
-    value: 70
-  - enemy: {fileID: 2826574622878968743, guid: 54285ce8ba458c1448904fa1f7ed58fa, type: 3}
-    count: 15
-    rate: 3
-    value: 100
-  - enemy: {fileID: 2826574622878968743, guid: 25419942f561c7741b60c20934e7282e, type: 3}
-    count: 20
-    rate: 1.7
-    value: 150
-  - enemy: {fileID: 2826574622878968743, guid: caf75b7ba60aec044a459ad39f7182db, type: 3}
-    count: 8
-    rate: 1
-    value: 200
-  - enemy: {fileID: 2826574622878968743, guid: 54285ce8ba458c1448904fa1f7ed58fa, type: 3}
-    count: 30
-    rate: 3
-    value: 300
-  enemies:
-  - {fileID: 2826574622878968743, guid: 25419942f561c7741b60c20934e7282e, type: 3}
-  - {fileID: 2826574622878968743, guid: 54285ce8ba458c1448904fa1f7ed58fa, type: 3}
-  - {fileID: 2826574622878968743, guid: caf75b7ba60aec044a459ad39f7182db, type: 3}
+  - enemiesDict:
+    - enemy: {fileID: 2826574622878968743, guid: 25419942f561c7741b60c20934e7282e,
+        type: 3}
+      count: 5
+      rate: 1.5
+      timeBeforeNextEnemy: 1
+    - enemy: {fileID: 2826574622878968743, guid: cb7c8b509aa6ed745927b0582e904fb1,
+        type: 3}
+      count: 2
+      rate: 2
+      timeBeforeNextEnemy: 0.5
+    - enemy: {fileID: 2826574622878968743, guid: caf75b7ba60aec044a459ad39f7182db,
+        type: 3}
+      count: 2
+      rate: 0.5
+      timeBeforeNextEnemy: 1
+  - enemiesDict:
+    - enemy: {fileID: 2826574622878968743, guid: 25419942f561c7741b60c20934e7282e,
+        type: 3}
+      count: 10
+      rate: 1
+      timeBeforeNextEnemy: 1
+  - enemiesDict:
+    - enemy: {fileID: 2826574622878968743, guid: c541cd1c0959f654c8f9b6b3b8f70726,
+        type: 3}
+      count: 20
+      rate: 3
+      timeBeforeNextEnemy: 1
+    - enemy: {fileID: 2826574622878968743, guid: 54285ce8ba458c1448904fa1f7ed58fa,
+        type: 3}
+      count: 5
+      rate: 1
+      timeBeforeNextEnemy: 1
   spawnPoint: {fileID: 1903235751}
   timeBetweenWaves: 5.99
   waveCountdownText: {fileID: 1348397098}
