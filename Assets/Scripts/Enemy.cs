@@ -38,15 +38,8 @@ public class Enemy : MonoBehaviour {
         speed = startSpeed;
         health = startHealth;
         if (isBuffer) {
-            GameObject effectInstance = (GameObject)Instantiate(auraEffect, transform.position, transform.rotation);
-            Destroy(effectInstance, 5f);
             StartCoroutine(Buff(buffType));
         }
-    }
-
-    public void DoBufferStuff() {
-        if (isBuffer)
-            StartCoroutine(Buff(buffType));
     }
 
     public IEnumerator Buff(int bufftype) {
