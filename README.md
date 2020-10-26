@@ -4,5 +4,6 @@ Routing the way,
 Findind a target,
 Shooting,
 Building,
+Upgrading,
 Level changing,
 etc.
